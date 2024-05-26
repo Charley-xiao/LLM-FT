@@ -13,6 +13,10 @@ pip install -r requirements.txt
 wget https://mindspore-demo.obs.cn-north-4.myhuaweicloud.com/mindnlp_install/mindnlp-0.3.1-py3-none-any.whl
 pip install mindnlp-0.3.1-py3-none-any.whl
 pip install tokenizers==0.15.2
+# Get dataset (example: ruozhiba_gpt4, optional if able to connect to huggingface)
+git clone https://huggingface.co/datasets/hfl/ruozhiba_gpt4
+# Get model (optional if able to connect to huggingface)
+git clone ...
 # Fine-tune
 python finetune.py
 ```
