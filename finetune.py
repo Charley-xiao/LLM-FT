@@ -1,4 +1,5 @@
 import mindspore as ms
+from mindspore import context
 from mindspore.train import Model
 from mindspore.train.callback import LossMonitor
 from mindspore.nn import SoftmaxCrossEntropyWithLogits, Adam
@@ -24,4 +25,5 @@ def finetune_llama3_with_lora(dataset_name, model_name, tokenizer_name, save_pat
     lora_model.save_model(save_path)
 
 if __name__ == "__main__":
+    context.set_context(mode=context.GRAPH_MODE, device_target="GPU")
     finetune_llama3_with_lora('/home/ma-user/work/LLM-FT/ruozhiba_gpt4', '/home/ma-user/work/LLM-FT/01ai/Yi-6B-Chat', '/home/ma-user/work/LLM-FT/01ai/Yi-6B-Chat', 'finetuned.ckpt')
