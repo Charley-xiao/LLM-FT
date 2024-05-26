@@ -18,5 +18,6 @@ git clone https://huggingface.co/datasets/hfl/ruozhiba_gpt4
 # Get model (optional if able to connect to huggingface)
 git clone ...
 # Fine-tune
+export TOKENIZER_PARALLELISM=true
 python finetune.py
 ```
