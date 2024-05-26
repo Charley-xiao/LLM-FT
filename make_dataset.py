@@ -1,12 +1,15 @@
 # dataset.py
 from datasets import load_dataset
-from transformers import AutoTokenizer
+from mindnlp.transformers import AutoTokenizer
+import json
 
-def load_and_preprocess_dataset(dataset_name, tokenizer_name, max_length=512, dataset_type='text', qa_columns=['instruction', 'output']):
+def load_and_preprocess_dataset(dataset_name, tokenizer_name, max_length=512, dataset_type='qa', qa_columns=['instruction', 'output']):
     dataset = load_dataset(dataset_name)
 
+    print(f'Loaded dataset: {dataset_name}')
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
-    
+    print(f'Loaded tokenizer: {tokenizer_name}')
+
     def preprocess_function_text(examples):
         return tokenizer(examples['text'], padding='max_length', truncation=True, max_length=max_length)
     
