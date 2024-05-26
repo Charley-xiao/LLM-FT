@@ -21,3 +21,7 @@ git clone ...
 export TOKENIZER_PARALLELISM=true
 python finetune.py
 ```
+
+dataset_sink_mode=True/False?
+
+TOKENIZER_PARALLELISM=true/false?
