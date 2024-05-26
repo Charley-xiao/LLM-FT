@@ -1,5 +1,11 @@
+from mindnlp.transformers import AutoModel
+from mindspore import nn, Parameter, ops, Tensor
 from mindspore.train.serialization import save_checkpoint
-from mindspore import nn, Tensor, Parameter
+import mindspore as ms
+
+def load_llama3_model(model_name):
+    model = AutoModel.from_pretrained(model_name)
+    return model
 
 class LoRAAdapter(nn.Cell):
     def __init__(self, model, r=4, alpha=32):
@@ -13,7 +19,8 @@ class LoRAAdapter(nn.Cell):
         lora_params = {}
         for name, param in self.model.parameters_and_names():
             if 'weight' in name:
-                lora_param = Parameter(Tensor.zeros(param.shape), name=name+'_lora')
+                shape = param.shape
+                lora_param = Parameter(Tensor(ops.Zeros()(shape, ms.float32)), name=name+'_lora')
                 lora_params[name+'_lora'] = lora_param
         return lora_params
 
