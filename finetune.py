@@ -3,7 +3,7 @@ from mindspore.train import Model
 from mindspore.train.callback import LossMonitor
 from mindspore.nn import SoftmaxCrossEntropyWithLogits, Adam
 
-from dataset import load_and_preprocess_dataset
+from make_dataset import load_and_preprocess_dataset
 from lora_adapter import load_llama3_model, LoRAAdapter
 
 def finetune_llama3_with_lora(dataset_name, model_name, tokenizer_name, save_path, epochs=3, batch_size=8, learning_rate=1e-4):
@@ -24,4 +24,4 @@ def finetune_llama3_with_lora(dataset_name, model_name, tokenizer_name, save_pat
     lora_model.save_model(save_path)
 
 if __name__ == "__main__":
-    finetune_llama3_with_lora('hfl/ruozhiba_gpt4', 'meta-llama/Meta-Llama-3-8B-Instruct', 'meta-llama/Meta-Llama-3-8B-Instruct', 'finetuned_llama3.ckpt')
+    finetune_llama3_with_lora('/home/ma-user/work/LLM-FT/ruozhiba_gpt4', '/home/ma-user/work/LLM-FT/01ai/Yi-6B-Chat', '/home/ma-user/work/LLM-FT/01ai/Yi-6B-Chat', 'finetuned.ckpt')
